@@ -64,6 +64,10 @@
           <groupId>org.apache.activemq</groupId>
           <artifactId>activemq-openwire-legacy</artifactId>
         </exclusion>
+        <exclusion>
+          <groupId>org.apache.geronimo.specs</groupId>
+          <artifactId>geronimo-jms_1.1_spec</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
