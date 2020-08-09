@@ -1,12 +1,13 @@
 package com.github.marschall.jfr.jmstemplate;
 
+import java.util.Objects;
+
 import javax.jms.Destination;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.Queue;
 import javax.jms.Topic;
 
-import org.springframework.jms.JmsException;
 import org.springframework.jms.core.BrowserCallback;
 import org.springframework.jms.core.JmsOperations;
 import org.springframework.jms.core.MessageCreator;
@@ -26,12 +27,19 @@ public final class JfrJmsOperations implements JmsOperations {
 
   private final JmsOperations delegate;
 
+
+  /**
+   * Constructs a new {@link JfrJmsOperations}.
+   *
+   * @param delegate the actual {@link JmsOperations} implementation, not {@code null}
+   */
   public JfrJmsOperations(JmsOperations delegate) {
+    Objects.requireNonNull(delegate, "delegate");
     this.delegate = delegate;
   }
 
   @Override
-  public <T> T execute(SessionCallback<T> action) throws JmsException {
+  public <T> T execute(SessionCallback<T> action) {
     JmsEvent event = new JmsEvent();
     event.setOperationName("execute");
     event.begin();
@@ -44,7 +52,7 @@ public final class JfrJmsOperations implements JmsOperations {
   }
 
   @Override
-  public <T> T execute(ProducerCallback<T> action) throws JmsException {
+  public <T> T execute(ProducerCallback<T> action) {
     JmsEvent event = new JmsEvent();
     event.setOperationName("execute");
     event.begin();
@@ -57,7 +65,7 @@ public final class JfrJmsOperations implements JmsOperations {
   }
 
   @Override
-  public <T> T execute(Destination destination, ProducerCallback<T> action) throws JmsException {
+  public <T> T execute(Destination destination, ProducerCallback<T> action) {
     JmsEvent event = new JmsEvent();
     event.setOperationName("execute");
     event.setDestinationName(getDestinationName(destination));
@@ -71,7 +79,7 @@ public final class JfrJmsOperations implements JmsOperations {
   }
 
   @Override
-  public <T> T execute(String destinationName, ProducerCallback<T> action) throws JmsException {
+  public <T> T execute(String destinationName, ProducerCallback<T> action) {
     JmsEvent event = new JmsEvent();
     event.setOperationName("execute");
     event.setDestinationName(destinationName);
@@ -85,7 +93,7 @@ public final class JfrJmsOperations implements JmsOperations {
   }
 
   @Override
-  public void send(MessageCreator messageCreator) throws JmsException {
+  public void send(MessageCreator messageCreator) {
     JmsEvent event = new JmsEvent();
     event.setOperationName("send");
     event.begin();
@@ -98,7 +106,7 @@ public final class JfrJmsOperations implements JmsOperations {
   }
 
   @Override
-  public void send(Destination destination, MessageCreator messageCreator) throws JmsException {
+  public void send(Destination destination, MessageCreator messageCreator) {
     JmsEvent event = new JmsEvent();
     event.setOperationName("send");
     event.setDestinationName(getDestinationName(destination));
@@ -112,7 +120,7 @@ public final class JfrJmsOperations implements JmsOperations {
   }
 
   @Override
-  public void send(String destinationName, MessageCreator messageCreator) throws JmsException {
+  public void send(String destinationName, MessageCreator messageCreator) {
     JmsEvent event = new JmsEvent();
     event.setOperationName("send");
     event.setDestinationName(destinationName);
@@ -126,7 +134,7 @@ public final class JfrJmsOperations implements JmsOperations {
   }
 
   @Override
-  public void convertAndSend(Object message) throws JmsException {
+  public void convertAndSend(Object message) {
     JmsEvent event = new JmsEvent();
     event.setOperationName("convertAndSend");
     event.begin();
@@ -139,7 +147,7 @@ public final class JfrJmsOperations implements JmsOperations {
   }
 
   @Override
-  public void convertAndSend(Destination destination, Object message) throws JmsException {
+  public void convertAndSend(Destination destination, Object message) {
     JmsEvent event = new JmsEvent();
     event.setOperationName("convertAndSend");
     event.setDestinationName(getDestinationName(destination));
@@ -153,7 +161,7 @@ public final class JfrJmsOperations implements JmsOperations {
   }
 
   @Override
-  public void convertAndSend(String destinationName, Object message) throws JmsException {
+  public void convertAndSend(String destinationName, Object message) {
     JmsEvent event = new JmsEvent();
     event.setOperationName("convertAndSend");
     event.setDestinationName(destinationName);
@@ -167,7 +175,7 @@ public final class JfrJmsOperations implements JmsOperations {
   }
 
   @Override
-  public void convertAndSend(Object message, MessagePostProcessor postProcessor) throws JmsException {
+  public void convertAndSend(Object message, MessagePostProcessor postProcessor) {
     JmsEvent event = new JmsEvent();
     event.setOperationName("convertAndSend");
     event.begin();
@@ -181,7 +189,7 @@ public final class JfrJmsOperations implements JmsOperations {
 
   @Override
   public void convertAndSend(Destination destination, Object message, MessagePostProcessor postProcessor)
-      throws JmsException {
+      {
     JmsEvent event = new JmsEvent();
     event.setOperationName("convertAndSend");
     event.setDestinationName(getDestinationName(destination));
@@ -196,7 +204,7 @@ public final class JfrJmsOperations implements JmsOperations {
 
   @Override
   public void convertAndSend(String destinationName, Object message, MessagePostProcessor postProcessor)
-      throws JmsException {
+      {
     JmsEvent event = new JmsEvent();
     event.setOperationName("convertAndSend");
     event.setDestinationName(destinationName);
@@ -210,7 +218,7 @@ public final class JfrJmsOperations implements JmsOperations {
   }
 
   @Override
-  public Message receive() throws JmsException {
+  public Message receive() {
     JmsEvent event = new JmsEvent();
     event.setOperationName("receive");
     event.begin();
@@ -223,7 +231,7 @@ public final class JfrJmsOperations implements JmsOperations {
   }
 
   @Override
-  public Message receive(Destination destination) throws JmsException {
+  public Message receive(Destination destination) {
     JmsEvent event = new JmsEvent();
     event.setOperationName("receive");
     event.setDestinationName(getDestinationName(destination));
@@ -237,7 +245,7 @@ public final class JfrJmsOperations implements JmsOperations {
   }
 
   @Override
-  public Message receive(String destinationName) throws JmsException {
+  public Message receive(String destinationName) {
     JmsEvent event = new JmsEvent();
     event.setOperationName("receive");
     event.setDestinationName(destinationName);
@@ -251,7 +259,7 @@ public final class JfrJmsOperations implements JmsOperations {
   }
 
   @Override
-  public Message receiveSelected(String messageSelector) throws JmsException {
+  public Message receiveSelected(String messageSelector) {
     JmsEvent event = new JmsEvent();
     event.setOperationName("receiveSelected");
     event.setMessageSelector(messageSelector);
@@ -265,7 +273,7 @@ public final class JfrJmsOperations implements JmsOperations {
   }
 
   @Override
-  public Message receiveSelected(Destination destination, String messageSelector) throws JmsException {
+  public Message receiveSelected(Destination destination, String messageSelector) {
     JmsEvent event = new JmsEvent();
     event.setOperationName("receiveSelected");
     event.setDestinationName(getDestinationName(destination));
@@ -280,7 +288,7 @@ public final class JfrJmsOperations implements JmsOperations {
   }
 
   @Override
-  public Message receiveSelected(String destinationName, String messageSelector) throws JmsException {
+  public Message receiveSelected(String destinationName, String messageSelector) {
     JmsEvent event = new JmsEvent();
     event.setOperationName("receiveSelected");
     event.setDestinationName(destinationName);
@@ -295,7 +303,7 @@ public final class JfrJmsOperations implements JmsOperations {
   }
 
   @Override
-  public Object receiveAndConvert() throws JmsException {
+  public Object receiveAndConvert() {
     JmsEvent event = new JmsEvent();
     event.setOperationName("receiveSelectedAndConvert");
     event.begin();
@@ -308,7 +316,7 @@ public final class JfrJmsOperations implements JmsOperations {
   }
 
   @Override
-  public Object receiveAndConvert(Destination destination) throws JmsException {
+  public Object receiveAndConvert(Destination destination) {
     JmsEvent event = new JmsEvent();
     event.setOperationName("receiveSelectedAndConvert");
     event.setDestinationName(getDestinationName(destination));
@@ -322,7 +330,7 @@ public final class JfrJmsOperations implements JmsOperations {
   }
 
   @Override
-  public Object receiveAndConvert(String destinationName) throws JmsException {
+  public Object receiveAndConvert(String destinationName) {
     JmsEvent event = new JmsEvent();
     event.setOperationName("receiveSelectedAndConvert");
     event.setDestinationName(destinationName);
@@ -336,7 +344,7 @@ public final class JfrJmsOperations implements JmsOperations {
   }
 
   @Override
-  public Object receiveSelectedAndConvert(String messageSelector) throws JmsException {
+  public Object receiveSelectedAndConvert(String messageSelector) {
     JmsEvent event = new JmsEvent();
     event.setOperationName("receiveSelectedAndConvert");
     event.setMessageSelector(messageSelector);
@@ -350,7 +358,7 @@ public final class JfrJmsOperations implements JmsOperations {
   }
 
   @Override
-  public Object receiveSelectedAndConvert(Destination destination, String messageSelector) throws JmsException {
+  public Object receiveSelectedAndConvert(Destination destination, String messageSelector) {
     JmsEvent event = new JmsEvent();
     event.setOperationName("receiveSelectedAndConvert");
     event.setDestinationName(getDestinationName(destination));
@@ -365,7 +373,7 @@ public final class JfrJmsOperations implements JmsOperations {
   }
 
   @Override
-  public Object receiveSelectedAndConvert(String destinationName, String messageSelector) throws JmsException {
+  public Object receiveSelectedAndConvert(String destinationName, String messageSelector) {
     JmsEvent event = new JmsEvent();
     event.setOperationName("receiveSelectedAndConvert");
     event.setDestinationName(destinationName);
@@ -380,7 +388,7 @@ public final class JfrJmsOperations implements JmsOperations {
   }
 
   @Override
-  public Message sendAndReceive(MessageCreator messageCreator) throws JmsException {
+  public Message sendAndReceive(MessageCreator messageCreator) {
     JmsEvent event = new JmsEvent();
     event.setOperationName("sendAndReceive");
     event.begin();
@@ -393,7 +401,7 @@ public final class JfrJmsOperations implements JmsOperations {
   }
 
   @Override
-  public Message sendAndReceive(Destination destination, MessageCreator messageCreator) throws JmsException {
+  public Message sendAndReceive(Destination destination, MessageCreator messageCreator) {
     JmsEvent event = new JmsEvent();
     event.setOperationName("sendAndReceive");
     event.setDestinationName(getDestinationName(destination));
@@ -407,7 +415,7 @@ public final class JfrJmsOperations implements JmsOperations {
   }
 
   @Override
-  public Message sendAndReceive(String destinationName, MessageCreator messageCreator) throws JmsException {
+  public Message sendAndReceive(String destinationName, MessageCreator messageCreator) {
     JmsEvent event = new JmsEvent();
     event.setOperationName("sendAndReceive");
     event.setDestinationName(destinationName);
@@ -421,7 +429,7 @@ public final class JfrJmsOperations implements JmsOperations {
   }
 
   @Override
-  public <T> T browse(BrowserCallback<T> action) throws JmsException {
+  public <T> T browse(BrowserCallback<T> action) {
     JmsEvent event = new JmsEvent();
     event.setOperationName("browse");
     event.begin();
@@ -434,7 +442,7 @@ public final class JfrJmsOperations implements JmsOperations {
   }
 
   @Override
-  public <T> T browse(Queue queue, BrowserCallback<T> action) throws JmsException {
+  public <T> T browse(Queue queue, BrowserCallback<T> action) {
     JmsEvent event = new JmsEvent();
     event.setOperationName("browse");
     event.setDestinationName(getDestinationName(queue));
@@ -448,7 +456,7 @@ public final class JfrJmsOperations implements JmsOperations {
   }
 
   @Override
-  public <T> T browse(String queueName, BrowserCallback<T> action) throws JmsException {
+  public <T> T browse(String queueName, BrowserCallback<T> action) {
     JmsEvent event = new JmsEvent();
     event.setOperationName("browse");
     event.setDestinationName(queueName);
@@ -462,7 +470,7 @@ public final class JfrJmsOperations implements JmsOperations {
   }
 
   @Override
-  public <T> T browseSelected(String messageSelector, BrowserCallback<T> action) throws JmsException {
+  public <T> T browseSelected(String messageSelector, BrowserCallback<T> action) {
     JmsEvent event = new JmsEvent();
     event.setOperationName("browseSelected");
     event.setMessageSelector(messageSelector);
@@ -476,7 +484,7 @@ public final class JfrJmsOperations implements JmsOperations {
   }
 
   @Override
-  public <T> T browseSelected(Queue queue, String messageSelector, BrowserCallback<T> action) throws JmsException {
+  public <T> T browseSelected(Queue queue, String messageSelector, BrowserCallback<T> action) {
     JmsEvent event = new JmsEvent();
     event.setOperationName("browseSelected");
     event.setDestinationName(getDestinationName(queue));
@@ -491,7 +499,7 @@ public final class JfrJmsOperations implements JmsOperations {
   }
 
   @Override
-  public <T> T browseSelected(String queueName, String messageSelector, BrowserCallback<T> action) throws JmsException {
+  public <T> T browseSelected(String queueName, String messageSelector, BrowserCallback<T> action) {
     JmsEvent event = new JmsEvent();
     event.setOperationName("browseSelected");
     event.setDestinationName(queueName);
@@ -524,13 +532,13 @@ public final class JfrJmsOperations implements JmsOperations {
   static class JmsEvent extends Event {
 
     @Label("Operation Name")
-    @Description("The name of the JDBC operation")
+    @Description("The name of the JMS operation")
     private String operationName;
 
     @Label("Destination Name")
     @Description("The name of the Queue or Topic")
     private String destinationName;
-    
+
     @Label("Message Selector")
     @Description("The message selector")
     private String messageSelector;
