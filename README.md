@@ -40,7 +40,7 @@ public class JmsConfiguration {
 
    @Bean
    public JmsOperations jmsOperations() {
-     return new JfrJmsOperations(new JmsTemplate(this.dataSource));
+     return new JfrJmsOperations(new JmsTemplate(this.connectionFactory));
    }
 
 }
@@ -49,4 +49,4 @@ public class JmsConfiguration {
 Limitations
 -----------
 
-* We can not intercept `JmsTemplate#setDefaultDestination(Destination)` or `org.springframework.jms.core.JmsTemplate#setDefaultDestinationName(String)` so for operations on the default destination we can not report 
+* We can not intercept `JmsTemplate#setDefaultDestination(Destination)` or `JmsTemplate#setDefaultDestinationName(String)` so for operations on the default destination we can not report the destination name.
