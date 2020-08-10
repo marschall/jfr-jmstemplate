@@ -1,7 +1,7 @@
 JFR JmsTemplate [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.marschall/jfr-jmstemplate/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.marschall/jfr-jmstemplate) [![Javadocs](https://www.javadoc.io/badge/com.github.marschall/jfr-jmstemplate.svg)](https://www.javadoc.io/doc/com.github.marschall/jfr-jmstemplate) [![Build Status](https://travis-ci.org/marschall/jfr-jmstemplate.svg?branch=master)](https://travis-ci.org/marschall/jfr-jmstemplate)
 ===============
 
-An implementation of Spring [JdbcTemplate](https://docs.spring.io/spring/docs/current/spring-framework-reference/integration.html#jms-jmstemplate) that generates [Flight Recorder](https://openjdk.java.net/jeps/328) events.
+An implementation of Spring [JmsTemplate](https://docs.spring.io/spring/docs/current/spring-framework-reference/integration.html#jms-jmstemplate) that generates [Flight Recorder](https://openjdk.java.net/jeps/328) events.
 
 This project requires Java 11 based on OpenJDK or later.
 
