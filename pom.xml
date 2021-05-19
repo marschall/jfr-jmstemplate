@@ -42,6 +42,12 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-jms</artifactId>
       <scope>provided</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-jcl</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>jakarta.jms</groupId>
@@ -84,19 +90,16 @@
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-core</artifactId>
-      <version>${log4j.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-slf4j-impl</artifactId>
-      <version>${log4j.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-jcl</artifactId>
-      <version>${log4j.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -106,14 +109,21 @@
       <dependency>
         <groupId>org.junit</groupId>
         <artifactId>junit-bom</artifactId>
-        <version>5.6.2</version>
+        <version>5.7.2</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-framework-bom</artifactId>
-        <version>5.2.8.RELEASE</version>
+        <version>5.3.7</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-bom</artifactId>
+        <version>2.14.1</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -263,8 +273,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <log4j.version>2.13.3</log4j.version>
-    <activemq.version>5.16.0</activemq.version>
+    <activemq.version>5.16.2</activemq.version>
   </properties>
 
 </project>
