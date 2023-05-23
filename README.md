@@ -1,4 +1,4 @@
-JFR JmsTemplate [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.marschall/jfr-jmstemplate/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.marschall/jfr-jmstemplate) [![Javadocs](https://www.javadoc.io/badge/com.github.marschall/jfr-jmstemplate.svg)](https://www.javadoc.io/doc/com.github.marschall/jfr-jmstemplate) [![Build Status](https://travis-ci.org/marschall/jfr-jmstemplate.svg?branch=master)](https://travis-ci.org/marschall/jfr-jmstemplate)
+JFR JmsTemplate [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.marschall/jfr-jmstemplate/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.marschall/jfr-jmstemplate) [![Javadocs](https://www.javadoc.io/badge/com.github.marschall/jfr-jmstemplate.svg)](https://www.javadoc.io/doc/com.github.marschall/jfr-jmstemplate)
 ===============
 
 An implementation of Spring [JmsTemplate](https://docs.spring.io/spring/docs/current/spring-framework-reference/integration.html#jms-jmstemplate) that generates [Flight Recorder](https://openjdk.java.net/jeps/328) events.
@@ -26,7 +26,7 @@ We try to keep overhead to a minimum and have no additional allocations besides 
 * a few `instanceof` operations and casts
 * a `finally` block
 
-We assume `javax.jms.Queue#getQueueName()` and `javax.jms.Topic#getTopicName()` are simple getters.
+We assume `jakarta.jms.Queue#getQueueName()` and `jakarta.jms.Topic#getTopicName()` are simple getters.
 
 Usage
 -----
