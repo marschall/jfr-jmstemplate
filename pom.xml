@@ -72,12 +72,12 @@
       <scope>test</scope>
       <exclusions>
         <exclusion>
-          <groupId>com.fasterxml.jackson.core</groupId>
-          <artifactId>jackson-databind</artifactId>
+          <groupId>org.apache.activemq</groupId>
+          <artifactId>activemq-openwire-legacy</artifactId>
         </exclusion>
         <exclusion>
-          <groupId>org.apache.geronimo.specs</groupId>
-          <artifactId>geronimo-jms_1.1_spec</artifactId>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -85,18 +85,6 @@
       <groupId>org.apache.activemq.tooling</groupId>
       <artifactId>activemq-junit</artifactId>
       <version>${activemq.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.github.marschall</groupId>
-      <artifactId>jakarta-jms-adapter</artifactId>
-      <version>1.2.0</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>javax.jms</groupId>
-      <artifactId>javax.jms-api</artifactId>
-      <version>2.0.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -121,21 +109,21 @@
       <dependency>
         <groupId>org.junit</groupId>
         <artifactId>junit-bom</artifactId>
-        <version>5.9.3</version>
+        <version>5.12.0</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-framework-bom</artifactId>
-        <version>6.0.9</version>
+        <version>6.2.3</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>org.apache.logging.log4j</groupId>
         <artifactId>log4j-bom</artifactId>
-        <version>2.20.0</version>
+        <version>2.24.3</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -286,7 +274,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <activemq.version>5.18.1</activemq.version>
+    <activemq.version>6.1.5</activemq.version>
   </properties>
 
 </project>

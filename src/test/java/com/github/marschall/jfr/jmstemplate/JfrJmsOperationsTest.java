@@ -2,8 +2,6 @@ package com.github.marschall.jfr.jmstemplate;
 
 import static org.junit.Assert.assertEquals;
 
-import jakarta.jms.ConnectionFactory;
-
 import org.apache.activemq.junit.EmbeddedActiveMQBroker;
 import org.junit.Before;
 import org.junit.Rule;
@@ -11,7 +9,7 @@ import org.junit.Test;
 import org.springframework.jms.core.JmsOperations;
 import org.springframework.jms.core.JmsTemplate;
 
-import com.github.marschall.jakartajmsadapter.JakartaQueueConnectionFactory;
+import jakarta.jms.ConnectionFactory;
 
 public class JfrJmsOperationsTest {
 
@@ -22,7 +20,7 @@ public class JfrJmsOperationsTest {
 
   @Before
   public void setUp() {
-    ConnectionFactory connectionFactory = new JakartaQueueConnectionFactory(this.broker.createConnectionFactory());
+    ConnectionFactory connectionFactory = this.broker.createConnectionFactory();
     this.jmsOperations = new JfrJmsOperations(new JmsTemplate(connectionFactory));
   }
 
