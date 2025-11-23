@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.marschall</groupId>
   <artifactId>jfr-jmstemplate</artifactId>
-  <version>2.0.1-SNAPSHOT</version>
+  <version>3.0.0-SNAPSHOT</version>
   <inceptionYear>2019</inceptionYear>
   <name>JFR JMS</name>
   <description>A JMS wrapper that generates JFR events.</description>
@@ -109,21 +109,21 @@
       <dependency>
         <groupId>org.junit</groupId>
         <artifactId>junit-bom</artifactId>
-        <version>5.12.0</version>
+        <version>6.0.1</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-framework-bom</artifactId>
-        <version>6.2.3</version>
+        <version>7.0.1</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>org.apache.logging.log4j</groupId>
         <artifactId>log4j-bom</artifactId>
-        <version>2.24.3</version>
+        <version>2.25.2</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -146,19 +146,21 @@
   <build>
     <plugins>
       <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
+        <groupId>org.sonatype.central</groupId>
+        <artifactId>central-publishing-maven-plugin</artifactId>
+        <extensions>true</extensions>
         <configuration>
-          <release>17</release>
+          <publishingServerId>central</publishingServerId>
         </configuration>
       </plugin>
       <plugin>
         <artifactId>maven-javadoc-plugin</artifactId>
         <configuration>
-          <release>17</release>
           <links>
             <link>https://docs.oracle.com/en/java/javase/17/docs/api/</link>
             <link>https://docs.spring.io/spring-framework/docs/current/javadoc-api/</link>
           </links>
+          <notimestamp>true</notimestamp>
         </configuration>
         <executions>
           <execution>
@@ -182,23 +184,28 @@
         </executions>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
         <configuration>
           <mavenExecutorId>forked-path</mavenExecutorId>
           <arguments>-Pdeploy-to-sonatype-oss</arguments>
+          <tagNameFormat>@{project.version}</tagNameFormat>
         </configuration>
       </plugin>
     </plugins>
     <pluginManagement>
       <plugins>
         <plugin>
+          <groupId>org.sonatype.central</groupId>
+          <artifactId>central-publishing-maven-plugin</artifactId>
+          <version>0.9.0</version>
+        </plugin>
+        <plugin>
           <artifactId>maven-clean-plugin</artifactId>
-          <version>3.4.1</version>
+          <version>3.5.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.14.0</version>
+          <version>3.14.1</version>
         </plugin>
         <plugin>
           <artifactId>maven-deploy-plugin</artifactId>
@@ -206,7 +213,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-gpg-plugin</artifactId>
-          <version>3.2.7</version>
+          <version>3.2.8</version>
         </plugin>
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
@@ -214,15 +221,15 @@
         </plugin>
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
-          <version>3.4.2</version>
+          <version>3.5.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.11.2</version>
+          <version>3.12.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-release-plugin</artifactId>
-          <version>3.1.1</version>
+          <version>3.2.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
@@ -230,7 +237,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-scm-plugin</artifactId>
-          <version>2.1.0</version>
+          <version>2.2.1</version>
         </plugin>
         <plugin>
           <artifactId>maven-site-plugin</artifactId>
@@ -254,12 +261,10 @@
       <build>
         <plugins>
           <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
             <executions>
               <execution>
                 <id>sign-artifacts</id>
-                <phase>verify</phase>
                 <goals>
                   <goal>sign</goal>
                 </goals>
@@ -272,10 +277,11 @@
   </profiles>
 
   <properties>
+    <maven.compiler.release>17</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <activemq.version>6.1.5</activemq.version>
+    <project.build.outputTimestamp>2025-11-23T16:41:27Z</project.build.outputTimestamp>
+    <activemq.version>6.2.0</activemq.version>
   </properties>
 
 </project>
-

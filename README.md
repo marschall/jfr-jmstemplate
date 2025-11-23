@@ -3,13 +3,15 @@ JFR JmsTemplate [![Maven Central](https://maven-badges.herokuapp.com/maven-centr
 
 An implementation of Spring [JmsTemplate](https://docs.spring.io/spring/docs/current/spring-framework-reference/integration.html#jms-jmstemplate) that generates [Flight Recorder](https://openjdk.java.net/jeps/328) events.
 
-Versions 2.x are for Jakarta EE 9+ / Spring 6, versions 1.x are for Jakarta EE 8 / Spring 5.
+- versions 3.x are for Jakarta EE 11+ / Spring 7, Java 17
+- versions 2.x are for Jakarta EE 9+ / Spring 6, Java 17
+- versions 1.x are for Jakarta EE 8 / Spring 5
 
 ```xml
 <dependency>
   <groupId>com.github.marschall</groupId>
   <artifactId>jfr-jmstemplate</artifactId>
-  <version>2.0.0</version>
+  <version>3.0.0</version>
 </dependency>
 ```
 
