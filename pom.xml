@@ -281,7 +281,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <project.build.outputTimestamp>2025-11-23T16:59:41Z</project.build.outputTimestamp>
-    <activemq.version>6.2.0</activemq.version>
+    <activemq.version>6.2.4</activemq.version>
   </properties>
 
 </project>
